@@ -1,0 +1,88 @@
+@import 'tailwindcss';
+
+@theme inline {
+  --color-bg: #04010a;
+  --color-accent: #ff1a1a;
+  --color-accent2: #ff4444;
+  --color-dim: #660000;
+  --color-muted: #3a1010;
+  --color-text: #e8d0d0;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "Space Mono", monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-display);
+  overflow-x: hidden;
+}
+
+.font-display { font-family: var(--font-display); }
+.font-mono { font-family: var(--font-mono); }
+.text-accent { color: var(--color-accent); }
+.text-dim { color: var(--color-dim); }
+.text-muted-col { color: #6b3333; }
+.bg-accent { background-color: var(--color-accent); }
+.border-accent { border-color: var(--color-accent); }
+
+/* Feed scroll - endless red content stream */
+.feed-item {
+  border-left: 2px solid var(--color-dim);
+  padding-left: 1rem;
+  margin-bottom: 0.75rem;
+  transition: border-color 0.2s;
+}
+.feed-item:hover {
+  border-left-color: var(--color-accent);
+}
+
+/* Red ambient glow - center bottom */
+.glow-bottom {
+  position: fixed;
+  bottom: -40%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(ellipse at center, rgba(255,26,26,0.12) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Infinite scroll animation for feed */
+@keyframes scroll-up {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+.animate-feed {
+  animation: scroll-up 20s linear infinite;
+}
+
+/* Candle flicker - red dot */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  25% { opacity: 0.6; }
+  50% { opacity: 0.9; }
+  75% { opacity: 0.4; }
+}
+
+.animate-flicker {
+  animation: flicker 1.5s ease-in-out infinite;
+}
+
+/* Price bar */
+.price-bar {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-accent);
+  letter-spacing: 0.05em;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-dim); }
